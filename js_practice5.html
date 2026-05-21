@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>js_practice5</title>
+    <style type="text/css">
+        .title1{
+            font-family:"楷体","中软雅黑";
+            font-weight:bold;
+            font-style:italic;
+            color:aqua;
+            border:1px solid black;
+            border-radius:10px;
+            margin:100px 30% 100px 30%;
+            background:#808080;
+        }
+    </style>
+</head>
+<body>
+    <div class="title1">
+        <p>单价：<input id="price" type="number" value="17.3" /></p>
+        <p>数量：<input id="qty" type="number" value="10" /></p>
+        <button id="calcBtn">计算总价</button>
+        <p>总价：<span id="total">0</span>元</p>
+        <script>
+            document.getElementById('calcBtn').onclick = function () {
+                let price = document.getElementById('price').value;
+                let qty = document.getElementById('qty').value;
+                let total = price * qty;
+                document.getElementById('total').innerText = total;
+            }
+        </script>
+    </div>
+</body>
+</html>

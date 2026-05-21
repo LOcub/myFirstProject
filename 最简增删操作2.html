@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>最近增删操作2</title>
+</head>
+<body>
+    <h3>最简增删操作2</h3>
+    <table>
+        <thead>
+            <tr><th>产品</th><th>单价</th><th>数量</th><th>二级总价</th><th>操作</th></tr>
+        </thead>
+        <tbody id="tablebody"></tbody>
+    </table>
+    <div id="total" style="text-align:right;">总金额：0</div>
+    <div>
+        <input type="text" id="name" />
+        <input type="number" id="number" />
+        <input type="number" id="price" />
+    </div>
+    <button id="addBtn">添加</button>
+    <script>
+        let products = [];
+        let total = 0;
+        let totalBox = document.getElementById('total');
+        const tablebody = document.getElementById('tablebody');
+        function randerTable() {
+            tablebody.innerHTML = '';
+            total = 0;
+            for (let i = 0; i < products.length; i++) {
+                let p = products[i];
+                let row = tablebody.insertRow();
+                row.insertCell(0).innerText = p.name;
+                row.insertCell(1).innerText = p.price;
+                row.insertCell(2).innerText = p.number;
+                let stotal = p.price * p.number;
+                total += stotal;
+                row.insertCell(3).innerText = stotal.toFixed(2);
+
+                let delCell = row.insertCell(4);
+                let delBtn = document.createElement('button');
+                delBtn.innerText = '删除';
+                delBtn.onclick = (function (index) {
+                    return function () {
+                        products.splice(index, 1);
+                        randerTable();
+                    }
+                })(i);
+                delCell.appendChild(delBtn);
+            }
+            totalBox.innerText = "总金额:" + total.toFixed(2);
+        }
+        document.getElementById('addBtn').onclick = function(){
+            let name = document.getElementById('name').value;
+            let number = document.getElementById('number').value;
+            let price = document.getElementById('price').value;
+            if (name === '' || number === '' || price === '') {
+                alert('请输入有效值');
+                return;
+            }
+            products.push({ name: name, price: price, number: number });
+            randerTable();
+            document.getElementById('name').value = '';
+            document.getElementById('number').value = '';
+            document.getElementById('price').value = '';
+        }
+    </script>
+</body>
+</html>

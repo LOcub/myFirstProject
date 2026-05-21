@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>伟大产物分解1</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        .title{
+            background:#183544;
+            color:white;
+            padding:15px 50px 15px 50px;
+            border-radius:10px;
+            margin-left:15%;
+            margin-right:15%;
+            margin-top:40px;
+        }
+        .main{
+            padding:15px 50px 15px 50px;
+            border-radius:10px;
+            margin-left:15%;
+            margin-right:15%;
+            border:1px solid black;
+            color:#183544;
+        }
+        .title1{
+            background:#eef3f7;
+            height:40px;
+            font-weight:bold;
+            font-size:24px;
+        }
+        .title2,.title1{
+            border-spacing:10px;
+            border:1px solid black;
+        }
+        .name{
+            float:left;
+            width:15%;
+            padding-top:15px;
+            padding-bottom:15px;
+            font-weight:bold;
+            padding-left:5px;
+        }
+        .name_in{
+            float:left;
+            width:85%;
+            border:1px solid black;
+            padding-top:15px;
+            padding-bottom:15px;
+            border-radius:10px;
+        }
+        .name_in input{
+            width:100%;
+            border:none;
+            outline:none;
+            background:transparent;
+            padding-left:5px;
+        }
+        .name_in input[type="radio"],.name_in input[type="checkbox"]{
+            width:auto;
+            margin-right:6px;
+        }
+        .title2{
+            border:1px solid black;
+            overflow:auto;
+        }
+        .name_in select{
+            padding-left:5px;
+            padding:5px;
+        }
+        textarea {
+            width: 100%;
+            resize: vertical;
+            background:transparent;
+            outline:none;
+            border:none;
+        }
+        .submit1{
+            float:left;
+            width:50%;
+            text-align:right;
+            padding-right:10px;
+            padding:25px;
+        }
+        .reset1{
+            float:left;
+            width:50%;
+            text-align:left;
+            padding-left:10px;
+            padding:25px;
+            overflow:auto;
+        }
+        .preview-table1{
+            background:white;
+            color:black;
+            width:100%;
+            padding:5px;
+            border-collapse:collapse;
+            border:1px solid black;
+        }
+        .preview-table1 td{
+            border:1px solid #2e5a6b;
+        }
+        .preview-table1 th{
+            background:#2e5a6b;
+            color:white;
+            font-weight:bold;
+            border:1px solid white;
+        }
+        .preview-table1 tr{
+            transition:background 0.5s ease;
+            transition:color 0.5s ease;
+        }
+        .preview-table1 tr:hover{
+            background:#fff2e6;
+            color:#bdf1f3;
+        }
+        .title3{
+            width:100%;
+            background:#f1f6f9;
+            border-radius:20px;
+        }
+        .word{
+            font-weight:bold;
+            color:black;
+            padding:30px;
+        }
+        .word_list {
+            color: forestgreen;
+            background: white;
+            padding: 10px;
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding: 10px;
+            overflow: auto;
+            text-decoration:none;
+        }
+        .title4{
+            background:#f9f6ef;
+            margin-top:20px;
+            margin-bottom:20px;
+            padding:5px;
+        }
+        .title5{
+            background:#102b38;
+            color:white;
+            font-size:16px;
+            text-align:center;
+            margin-top:30px;
+            margin-bottom:30px;
+            padding:10px;
+            border-radius:30px;
+        }
+    </style>
+</head>
+<body>
+    <form aciton="#" method="post">
+        <div class="title">
+            <h1>罗德岛会议注册表</h1>
+            <h3><em>“博士，请填写您的会议信息——明日方舟·泰拉交流峰会”</em></h3>
+        </div>
+        <div class="main">
+            <div class="title1" id="log-in-id">干员/博士基本信息</div>
+            <div class="title2">
+                <div class="name">代号/姓名:</div>
+                <div class="name_in"><input type="text" placeholder="例如：博士/阿米娅" value="博士" required /></div>
+            </div>
+            <div class="title2">
+                <div class="name">所属机构:</div>
+                <div class="name_in"><input type="text" placeholder="例如：企鹅物流/罗德岛制药公司" value="罗德岛制药公司" /></div>
+            </div>
+            <div class="title2">
+                <div class="name">联络终端:</div>
+                <div class="name_in"><input type="email" placeholder="163.com/qq.com/foxmail.com" /></div>
+            </div>
+            <div class="title2">
+                <div class="name">性别登记:</div>
+                <div class="name_in">
+                    <input type="radio" name="gender" value="man" />man
+                    <input type="radio" name="gender" value="women" />woman
+                    <input type="radio" name="gender" value="illness" />illness
+                </div>
+            </div>
+            <div class="title2">
+                <div class="name">出生年份:</div>
+                <div class="name_in">
+                    <select name="birth">
+                        <option>泰拉纪年1090</option>
+                        <option selected>1095</option>
+                        <option>1098</option>
+                        <option>1100</option>
+                    </select>
+                </div>
+            </div>
+            <div class="title1">会议参与选项</div>
+            <div class="title2">
+                <div class="name">注册类型:</div>
+                <div class="name_in">
+                    <input type="radio" name="money" value="1280" />全体会议+晚宴
+                    <input type="radio" name="money" value="680" />标准票
+                    <input type="radio" name="money" value="280" />见习干员票
+                </div>
+            </div>
+            <div class="title2">
+                <div class="name">源石技艺讨论会</div>
+                <div class="name_in">
+                    <input type="checkbox" name="commit" value="commit1" />源石技艺应用
+                    <input type="checkbox" name="commit" value="commit2" />战术协同/危机合约
+                    <input type="checkbox" name="commit" value="commit3" />感染者权益共生
+                    <input type="checkbox" name="commit" value="commit4" />移动城市融媒体
+                </div>
+            </div>
+            <div class="title2">
+                <div class="name">餐饮偏好</div>
+                <div class="name_in">
+                    <select name="meal">
+                        <option selected>常规餐食</option>
+                        <option>素食风味</option>
+                        <option>至臻原石套餐</option>
+                        <option>罗德岛特供:博士健康套餐</option>
+                    </select>
+                </div>
+            </div>
+            <div class="title2">
+                <div class="name">留言/战术建议:</div>
+                <div class="name_in">
+                    <textarea name="words" rows:"4" cols:"50" placeholder="请写下你对罗德岛未来的期许..."></textarea>
+                </div>
+            </div>
+            <div class="title2">
+                <div class="submit1"><input type="submit" name="submit1" value="提交注册申请" /></div>
+                <div class="reset1"><input type="reset" name="reset1" value="重新填写" /></div>
+            </div>
+            <div class="title1">已报名干员（部分预览——罗德岛精英）</div>
+            <div class="preview-table">
+                <table class="preview-table1" id="preview-table-id">
+                    <tr><th>代号</th><th>所属</th><th>注册类型</th><th>源石技艺兴趣</th></tr>
+                    <tr><td>阿米娅</td><td>罗德岛</td><td>全体会议+晚餐</td><td>源石技艺使用</td></tr>
+                    <tr><td>博士</td><td>罗德岛指挥部</td><td>标准票</td><td>战术协同</td></tr>
+                    <tr><td>银灰</td><td>谢拉格</td><td>全体会议</td><td>感染者权益共生</td></tr>
+                    <tr><td>能天使</td><td>企鹅物流</td><td>标准票</td><td>移动城市融媒体</td></tr>
+                    <tr><td>陈</td><td>龙门近卫局</td><td>见习干员票</td><td>战术协同</td></tr>
+                </table>
+            </div>
+            <div class="title3">
+                <div class="word">罗德岛会议快速导览</div>
+                    <ul class="word_list">
+                        <li>
+                            <a href="#log-in-id">回到注册表单</a>
+                        </li>
+                        <li>
+                            <a href="#preview-table-id">会议日程</a>
+                        </li>
+                        <li>
+                            <a href="#">联系凯尔希医生</a>
+                        </li>
+                        <li>
+                            <a href="#top">返回顶部</a>
+                        </li>
+                    </ul>
+            </div>
+            <div class="title1">预计日程表（锚点演示）</div>
+            <div class="title4">
+                <div class="data_in">
+                    <p>第一天: 源石技艺研讨会 + 罗德岛走廊交流</p>
+                    <p>第二天: 危机合约战术分享 + 罗德岛新干员座谈会</p>
+                    <p>第三天: 感染者权益公益展 / 闭幕晚宴</p>
+                </div>
+            </div>
+            <div class="title1">联络中枢</div>
+            <div class="phone_in">
+                <p>
+                    📧 邮件: rhodes_island@rhodes.com    ☎ 终端: 844-RI-INFO
+                    🔗 官方地址: 罗德岛本舰 · 会议室甲板
+                </p>
+            </div>
+            <div class="title5">
+                <p>
+                    © 罗德岛制药公司 · 本次会议最终解释权归凯尔希医生所有 | “我们曾面临困境，但仍选择前行”
+                </p>
+                <p>                   
+                    🔹 明日方舟同人设计 · 用于前端学习展示 🔹
+                </p>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

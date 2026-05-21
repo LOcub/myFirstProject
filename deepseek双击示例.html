@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>双击编辑极简示例</title>
+</head>
+<body>
+    <ul>
+        <li>任务1</li>
+        <li>任务2</li>
+        <li>任务3</li>
+    </ul>
+
+    <script>
+        // 获取所有 <li> 元素
+        const listItems = document.querySelectorAll('li');
+
+        // 为每个 li 添加双击监听
+        listItems.forEach(li => {
+            li.addEventListener('dblclick', function() {
+                // 1. 保存当前文本内容
+                const oldText = li.innerText;
+
+                // 2. 创建输入框，并填入旧文本
+                const input = document.createElement('input');
+                input.value = oldText;
+
+                // 3. 清空 li 内容，放入输入框
+                li.innerHTML = '';
+                li.appendChild(input);
+                input.focus();  // 自动聚焦
+
+                // 4. 定义保存函数
+                function save() {
+                    const newText = input.value.trim();
+                    // 如果新内容为空，恢复旧内容；否则更新为新内容
+                    li.innerText = newText === '' ? oldText : newText;
+                    // 重新绑定双击事件（因为 innerText 替换后，原来的 li 事件还在，但为了可读性，重新获取监听？其实不必，因为 li 本身没变，但为了安全可以重新添加，不过这里简化）
+                    // 注意：直接赋值 innerText 不会影响 li 上的事件监听器，所以不需要重新绑定。
+                }
+
+                // 5. 监听失去焦点和回车键
+                input.addEventListener('blur', save);
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        save();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

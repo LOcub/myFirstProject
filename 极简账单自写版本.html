@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>极简账单自写版</title>
+    <style>
+        /* 外层容器：负责整体居中 */
+        body {
+            display: flex;
+            justify-content: center; /* 水平居中子元素 */
+            min-height: 100vh;
+        }
+
+        .wrapper {
+            max-width: 30%;
+            /* 不需要 margin: auto */
+        }
+
+        /* 保留你原来的样式（去掉 margin 相关，因为居中由 wrapper 负责） */
+        .title1, .title2, .title3 {
+            font-family: "kaiTi", "STXihei";
+            padding: 20px;
+            background: #c2c2c2;
+            border-radius: 12px;
+            border: 1px solid black;
+            /* 移除 margin-left/right，宽度可以自己定 */
+            width: 80%; /* 让内容占父容器的 80% 宽度，也可以设固定宽度如 600px */
+            box-sizing: border-box;
+        }
+
+        /* 表格额外处理：宽度自适应 */
+        .title2 {
+            width: 80%;
+            border-collapse: collapse;
+        }
+
+            .title2 th, .title2 td {
+                border: 1px solid black;
+                padding: 8px;
+                text-align: left;
+            }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title1">
+            <input type="text" id="project" placeholder="请输入项目名称" />
+            <input type="number" id="price" placeholder="请输入金额" />
+            <input type="number" id="number" placeholder="请输入数量" />
+            <button id="addBtn">add a line</button>
+        </div>
+
+        <table class="title2">
+            <thead>
+                <tr><th>project</th><th>price</th><th>number</th><th>小计</th></tr>
+            </thead>
+            <tbody id="tablebody"></tbody>
+        </table>
+
+        <div id="totalBox" class="title3" style="text-align:right;">总金额：0</div>
+    </div>
+
+    <script>
+        let total = 0;
+        let totalBox = document.getElementById('totalBox');
+        let tablebody = document.getElementById('tablebody');
+        document.getElementById('addBtn').onclick = function () {
+            let project = document.getElementById('project').value.trim();
+            let number = parseFloat(document.getElementById('number').value);
+            let price = parseFloat(document.getElementById('price').value);
+            if (project === '' || isNaN(number) || isNaN(price)) return;
+            let subtotal = number * price;
+            total += subtotal;
+
+            let row = tablebody.insertRow();
+            row.insertCell(0).innerText = project;
+            row.insertCell(1).innerText = price;
+            row.insertCell(2).innerText = number;
+            row.insertCell(3).innerText = subtotal;
+
+            totalBox.innerText = '总金额：' + total;
+
+            document.getElementById('project').value = '';
+            document.getElementById('price').value = '';
+            document.getElementById('number').value = '';
+        };
+    </script>
+</body>
+</html>

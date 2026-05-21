@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>事不过三</title>
+</head>
+<body>
+    <h1>重要按钮</h1>
+    <p>你还有 <span id="countDisplay">3</span> 次机会</p>
+    <button id="dangerBtn">危险按钮</button>
+
+    <script>
+        let count = 0;             // 记录点击次数
+        const maxClicks = 3;       // 最大允许次数
+        const btn = document.getElementById('dangerBtn');
+        const countSpan = document.getElementById('countDisplay');
+
+        btn.addEventListener('click', function() {
+            count++;
+            const remaining = maxClicks - count;
+
+            if (count <= maxClicks) {
+                // 弹出提示，显示当前是第几次
+                alert(`你点击了第 ${count} 次，还剩 ${remaining} 次机会`);
+                // 更新剩余次数显示
+                countSpan.innerText = remaining;
+            }
+
+            // 达到第三次（且已经 alert 之后）销毁页面
+            if (count >= maxClicks) {
+                // 方法一：清空 body 内容
+                document.body.innerHTML = '<h1>页面已销毁</h1><p>你已用完三次机会。</p>';
+                // 或者更彻底： location.reload() 刷新页面, 但用户要求“删了”，选择清空内容
+                // 注意：不能再让按钮存在，因为 body 已经被清空
+            }
+        });
+    </script>
+</body>
+</html>

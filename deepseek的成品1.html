@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>JS 四个核心练习</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 2rem;
+            background: #f5f7fc;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        button {
+            background: #2c7da0;
+            color: white;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .code {
+            background: #eef2f5;
+            padding: 8px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            margin: 8px 0;
+        }
+
+        hr {
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 JS 四大核心练习</h1>
+
+    <!-- 1️⃣ 加法返回 + 显示结果 -->
+    <div class="card">
+        <h3>1️⃣ 加法函数 + 显示到页面</h3>
+        <p>调用 add(8, 12) 把结果 20 显示在下方 <code>&lt;span&gt;</code> 中</p>
+        <button id="addBtn">计算 8 + 12</button>
+        <p>计算结果：<span id="sumResult">———</span></p>
+        <div class="code">// 实现：定义 add 函数 → 获取元素 → .innerText = 返回值</div>
+    </div>
+
+    <!-- 2️⃣ 点击按钮数值 +1（计数器） -->
+    <div class="card">
+        <h3>2️⃣ 计数器：点击 +1</h3>
+        <p>当前计数：<span id="counter">0</span></p>
+        <button id="incBtn">➕ 加 1</button>
+        <div class="code">// 每次点击时，读取当前数字，加1，再写回 .innerText</div>
+    </div>
+
+    <!-- 3️⃣ innerText vs innerHTML 对比（重要） -->
+    <div class="card">
+        <h3>3️⃣ innerText 与 innerHTML 对比</h3>
+        <button id="setTextBtn">使用 innerText 插入带标签的文字</button>
+        <button id="setHtmlBtn">使用 innerHTML 插入带标签的文字</button>
+        <div id="compareBox" style="background:#f9f3e3; padding:10px; border-radius:16px; margin-top:10px;">
+            这里会变化
+        </div>
+        <div class="code">innerText 不会解析 &lt;strong&gt; 标签；innerHTML 会解析为加粗效果。</div>
+    </div>
+
+    <!-- 4️⃣ textContent vs innerHTML 区别（对特殊字符的处理） -->
+    <div class="card">
+        <h3>4️⃣ textContent 与 innerHTML 区别</h3>
+        <button id="setTextContentBtn">textContent 插入 "&lt;em&gt;斜体&lt;/em&gt;"</button>
+        <button id="setInnerHtmlBtn2">innerHTML 插入 "&lt;em&gt;斜体&lt;/em&gt;"</button>
+        <div id="compareBox2" style="background:#e9f4f8; padding:10px; border-radius:16px; margin-top:10px;">
+            观察变化
+        </div>
+        <div class="code">textContent 会把 &lt;em&gt; 当作普通文本显示；innerHTML 会渲染成真正的斜体。</div>
+    </div>
+
+    <script>
+        // ---------- 1. 加法函数 + 显示 ----------
+        function add(a, b) {
+            return a + b;
+        }
+        document.getElementById('addBtn').addEventListener('click', function() {
+            let result = add(8, 12);
+            document.getElementById('sumResult').innerText = result;   // 数字显示为纯文本
+        });
+
+        // ---------- 2. 计数器 +1 ----------
+        let count = 0;
+        const counterSpan = document.getElementById('counter');
+        document.getElementById('incBtn').addEventListener('click', function() {
+            count++;
+            counterSpan.innerText = count;     // 更新显示
+        });
+
+        // ---------- 3. innerText vs innerHTML ----------
+        const compareDiv = document.getElementById('compareBox');
+        document.getElementById('setTextBtn').addEventListener('click', function() {
+            compareDiv.innerText = '普通文字 <strong>加粗标签不会生效</strong> 只显示源码';
+        });
+        document.getElementById('setHtmlBtn').addEventListener('click', function() {
+            compareDiv.innerHTML = 'innerHTML 解析：<strong>加粗生效了</strong> 并且 <em>斜体也生效</em>';
+        });
+
+        // ---------- 4. textContent vs innerHTML ----------
+        const compareDiv2 = document.getElementById('compareBox2');
+        document.getElementById('setTextContentBtn').addEventListener('click', function() {
+            compareDiv2.textContent = '<em>斜体标签被当作普通文本</em> 不会倾斜';
+        });
+        document.getElementById('setInnerHtmlBtn2').addEventListener('click', function() {
+            compareDiv2.innerHTML = '<em>斜体标签被解析，文字变成斜体</em> ✅';
+        });
+    </script>
+</body>
+</html>

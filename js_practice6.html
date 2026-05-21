@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>js_practice6</title>
+    <style>
+        .title1{
+            overflow-x:auto;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead><tr><th>事务</th><th>日期</th><th>操作</th></tr></thead>
+        <tbody id="tablebody"></tbody>
+    </table>
+    <span id="inputError" style="color:red;font-size:12px;"></span>
+    <div class="title1">
+        <input type="text" id="thing" placeholder="事务" />
+        <input type="date" id="date" />
+    </div>
+    <button id="addBtn">添加事务</button>
+    <script>
+        const tablebody = document.getElementById('tablebody');
+        const inputError = document.getElementById('inputError');
+        let thingval = document.getElementById('thing');
+        let tasks = [];
+        thingval.addEventListener('input', function () {
+            let val = document.getElementById('thing').value.trim();
+            if (val === '') {
+                inputError.innerText = '事务栏不可为空'
+            }
+            else {
+                inputError.innerText = '';
+            }
+        })
+        function renderTable() {
+            tablebody.innerHTML = '';
+            for (let i = 0; i < tasks.length; i++) {
+                let p = tasks[i];
+                let row = tablebody.insertRow();
+                row.insertCell(0).innerText = p.thing;
+                row.insertCell(1).innerText = p.date;
+                let delCell = row.insertCell(2);
+                let delBtn = document.createElement('button');
+                delBtn.innerText = "删除";
+                delBtn.onclick = (function (index) {
+                    return function () {
+                        tasks.splice(index, 1);
+                        renderTable();
+                    }
+                })(i);
+                delCell.appendChild(delBtn);
+                saveToLocal();
+            }
+        }
+        function saveToLocal() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+        function loadFromLocal() {
+            let data = localStorage.getItem('tasks');
+            if (data) {
+                tasks = JSON.parse(data);
+            }
+            else {
+                tasks = [{ thing: '事务1', date: '2004/3/3' }];
+            }
+            renderTable();
+        }
+        document.getElementById('addBtn').onclick = function () {
+            let thing = document.getElementById('thing').value;
+            let date = document.getElementById('date').value;
+            if (thing === '' || date === '') {
+                alert('请输入有效值');
+                return;
+            }
+            tasks.push({ thing: thing, date: date });
+            renderTable();
+            document.getElementById('thing').value = '';
+            document.getElementById('date').value = '';
+        }
+        loadFromLocal();
+    </script>
+</body>
+</html>

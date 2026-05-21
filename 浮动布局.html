@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>浮动布局练习</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            font-family:'Segoe UI',sans-serif;
+            background:lightgray;
+            padding:20px;
+        }
+        .header,.footer,.main,.sidebar{
+            padding:20px;
+            border-radius:8px;
+        }
+        .header{
+            margin-bottom:20px;
+            background:#00ffff;
+        }
+        .sidebar{
+            float:left;
+            margin-left:5%;
+            background:#ff0000;
+            width:25%;
+        }
+        .main{
+            float:left;
+            background:#000000;
+            color:white;
+            width:70%;
+        }
+        .footer{
+            background:#b6ff00;
+            clear:both;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <p>我来组成头部</p>
+    </div>
+    <div class="sidebar">
+        <ol type="1" start="1">
+            <li>首页</li>
+            <li>介绍</li>
+            <li>产品</li>
+            <li>关于我们</li>
+            <li>联系方式</li>
+        </ol>
+    </div>
+    <div class="main">
+        <p>我来组成身体</p>
+    </div>
+    <div class="footer">
+        <p>我来组成东北雨姐</p>
+    </div>
+</body>
+</html>

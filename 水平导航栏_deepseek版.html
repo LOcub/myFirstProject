@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>导航栏练习 | 盒子模型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f7fa;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+
+        /* 导航栏容器 */
+        .nav-bar {
+            background: white;
+            border-radius: 60px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 8px 20px;
+            max-width: 700px;
+            margin: 0 auto; /* 水平居中 */
+        }
+
+        /* 清除 ul 默认样式，使其成为浮动父容器 */
+        .nav-list {
+            list-style: none;
+            overflow: hidden; /* 清除内部浮动 */
+        }
+
+            /* 让每个 li 左浮动 */
+            .nav-list li {
+                float: left;
+            }
+
+                /* 链接样式 —— 盒子模型在这里体现 */
+                .nav-list li a {
+                    display: inline-block; /* 使 a 能设置宽高内边距 */
+                    padding: 10px 24px; /* 内边距：上下10px，左右24px */
+                    margin: 0 6px; /* 外边距：左右6px，让按钮分离 */
+                    background-color: #eef2f7;
+                    color: #1f3a4b;
+                    text-decoration: none;
+                    font-weight: 600;
+                    border-radius: 40px; /* 圆角胶囊效果 */
+                    border: 1px solid transparent;
+                    transition: all 0.2s ease;
+                }
+
+                    /* 鼠标悬停效果：盒子背景、边框、文字颜色变化 */
+                    .nav-list li a:hover {
+                        background-color: #2c6e9e;
+                        color: white;
+                        border-color: #1f5a7e;
+                        transform: translateY(-2px); /* 微微上提，增强交互 */
+                    }
+
+                /* 当前激活页特殊样式（演示用，首页默认激活） */
+                .nav-list li.active a {
+                    background-color: #2c6e9e;
+                    color: white;
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <ul class="nav-list">
+            <li class="active"><a href="#">首页</a></li>
+            <li><a href="#">新闻动态</a></li>
+            <li><a href="#">产品中心</a></li>
+            <li><a href="#">关于我们</a></li>
+            <li><a href="#">联系方式</a></li>
+        </ul>
+    </div>
+    <p style="text-align: center; margin-top: 50px; color: #2c6e9e;">✨ 鼠标悬停看盒子模型的 margin、padding、border-radius 作用 ✨</p>
+</body>
+</html>

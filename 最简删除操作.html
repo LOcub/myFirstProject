@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>最简删除操作</title>
+</head>
+<body>
+    <h3>shopping item</h3>
+    <table border="1" id="dataTable">
+        <thead>
+            <tr><th>名称</th><th>价格</th><th>操作</th></tr>
+        </thead>
+        <tbody id="tablebody"></tbody>
+    </table>
+
+    <script>
+        let items = [
+            { name: "苹果", price: 12 },
+            { name: "香蕉", price: 13 },
+            { name: "西瓜", price: 0.9 }
+        ];
+
+        const tablebody = document.getElementById('tablebody');
+
+        function renderTable() {
+            tablebody.innerHTML = '';   // 清空
+            for (let i = 0; i < items.length; i++) {
+                let item = items[i];
+                let row = tablebody.insertRow();
+                row.insertCell(0).innerText = item.name;
+                row.insertCell(1).innerText = item.price;
+
+                // 操作列：创建删除按钮
+                let delCell = row.insertCell(2);
+                let delBtn = document.createElement('button');
+                delBtn.innerText = '删除';
+                // 使用闭包捕获当前索引 i（也可以用 let 声明，但这里用闭包更清晰）
+                delBtn.onclick = (function (index) {
+                    return function () {
+                        items.splice(index, 1);
+                        renderTable();
+                    };
+                })(i);
+                delCell.appendChild(delBtn);
+            }
+        }
+
+        renderTable();   // 初始渲染
+    </script>
+</body>
+</html>

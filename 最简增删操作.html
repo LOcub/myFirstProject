@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>最简增删操作</title>
+</head>
+<body>
+    <h3>最简增删操作</h3>
+    <table>
+        <tr>
+        <thead>
+            <tr><th>产品名称</th><th>数量</th><th>单价</th><th>操作</th></tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+    <div>
+        <input type="text" id="produceName" placeholder="请输入产品名称" />
+        <input type="number" id="produceNumber" placeholder="请输入产品数量" />
+        <input type="number" id="producePrice" placeholder="请输入产品单价" />
+        <button id="addBtn">添加</button>
+    </div>
+
+    <script>
+        // 1. 数据存储
+        let products = [];
+
+        const tablebody = document.getElementById('tableBody');
+
+        // 2. 渲染表格：根据 products 数组重新绘制所有行
+        function renderTable() {
+            tablebody.innerHTML = '';   // 清空现有内容
+            for (let i = 0; i < products.length; i++) {
+                let p = products[i];
+                let row = tablebody.insertRow();
+                row.insertCell(0).innerText = p.name;
+                row.insertCell(1).innerText = p.qty;
+                row.insertCell(2).innerText = p.price;
+
+                // 操作列：创建删除按钮
+                let delCell = row.insertCell(3);
+                let delBtn = document.createElement('button');
+                delBtn.innerText = '删除';
+                // 使用闭包保存当前索引 i
+                delBtn.onclick = (function (index) {
+                    return function () {
+                        // 从数组中删除第 index 项
+                        products.splice(index, 1);
+                        // 重新渲染表格
+                        renderTable();
+                    };
+                })(i);
+                delCell.appendChild(delBtn);
+            }
+        }
+
+        // 3. 添加记录
+        document.getElementById('addBtn').onclick = function () {
+            let name = document.getElementById('produceName').value.trim();
+            let qty = parseFloat(document.getElementById('produceNumber').value);
+            let price = parseFloat(document.getElementById('producePrice').value);
+
+            if (name === '' || isNaN(qty) || isNaN(price)) {
+                alert('请完整填写产品名称、数量、单价（数字）');
+                return;
+            }
+
+            // 添加到数组
+            products.push({ name: name, qty: qty, price: price });
+
+            // 重新渲染表格
+            renderTable();
+
+            // 清空输入框
+            document.getElementById('produceName').value = '';
+            document.getElementById('produceNumber').value = '';
+            document.getElementById('producePrice').value = '';
+        };
+    </script>
+</body>
+</html>

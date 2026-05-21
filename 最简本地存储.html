@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>最简本地存储</title>
+</head>
+<body>
+    <input id="task" placeholder="项目" />
+    <button id="addBtn">添加任务</button>
+    <ul id="list"></ul>
+
+    <script>
+        const taskInput = document.getElementById('task');
+        const list = document.getElementById('list');
+        const addBtn = document.getElementById('addBtn');
+        let tasks = [];
+
+        // 渲染列表
+        function renderTable() {
+            list.innerHTML = '';                // 清空 UL
+            for (let i = 0; i < tasks.length; i++) {
+                let li = document.createElement('li');
+                li.innerText = tasks[i];
+                let delBtn = document.createElement('button');
+                delBtn.innerText = '删除';
+                // 使用闭包捕获索引 i
+                delBtn.onclick = (function (index) {
+                    return function () {
+                        tasks.splice(index, 1);   // 删除数组中的项
+                        renderTable();             // 重新渲染
+                    };
+                })(i);
+                li.appendChild(delBtn);
+                list.appendChild(li);
+            }
+            saveToLocal();   // 每次渲染后保存
+        }
+
+        // 保存到本地存储
+        function saveToLocal() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        // 从本地存储加载
+        function loadFromLocal() {
+            let data = localStorage.getItem('tasks');
+            if (data) {
+                tasks = JSON.parse(data);
+            } else {
+                tasks = ['示例任务1', '示例任务2'];   // 默认数据
+            }
+            renderTable();
+        }
+
+        // 添加任务
+        addBtn.onclick = function () {
+            let val = taskInput.value.trim();
+            if (val === '') return;
+            tasks.push(val);
+            renderTable();
+            taskInput.value = '';
+        };
+
+        // 页面启动时加载本地数据
+        loadFromLocal();
+    </script>
+</body>
+</html>

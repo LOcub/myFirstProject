@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36429.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{9FA3D6BD-1EC1-3BA5-80CB-CE02773A58D5}"
+	ProjectSection(SolutionItems) = preProject
+		deepseek成品参考1.html = deepseek成品参考1.html
+		deepseek成品参考2.html = deepseek成品参考2.html
+		deepseek数据筛选与排序.html = deepseek数据筛选与排序.html
+		deepseek本地存储示例.html = deepseek本地存储示例.html
+		deepseek的成品1.html = deepseek的成品1.html
+		details_summary.html = details_summary.html
+		js_demo_deepseek.html = js_demo_deepseek.html
+		js_pracitce5.html = js_pracitce5.html
+		js_practice.html = js_practice.html
+		js_practice1.html = js_practice1.html
+		js_practice2.html = js_practice2.html
+		js_practice3.html = js_practice3.html
+		js_practice4.html = js_practice4.html
+		js_practice7.html = js_practice7.html
+		my_css_practice1.html = my_css_practice1.html
+		my_first_practice1.html = my_first_practice1.html
+		my_portfolio.html = my_portfolio.html
+		伟大产物.html = 伟大产物.html
+		伟大产物分解1.html = 伟大产物分解1.html
+		伪类.deepseek版.html = 伪类.deepseek版.html
+		伪类练习.html = 伪类练习.html
+		伪类练习2.html = 伪类练习2.html
+		公司账单仿制.html = 公司账单仿制.html
+		加法器.html = 加法器.html
+		动态单元格.html = 动态单元格.html
+		动态单元格pro.html = 动态单元格pro.html
+		参考项.html = 参考项.html
+		双击输入框再尝试.html = 双击输入框再尝试.html
+		双击输入框尝试.html = 双击输入框尝试.html
+		我的个人简历_deepseek版.html = 我的个人简历_deepseek版.html
+		最简删除操作.html = 最简删除操作.html
+		最简增删操作.html = 最简增删操作.html
+		最简增删操作2.html = 最简增删操作2.html
+		最终目标.html = 最终目标.html
+		极简账单抄录般.html = 极简账单抄录般.html
+		极简账单自写版本.html = 极简账单自写版本.html
+		水平导航栏_deepseek版.html = 水平导航栏_deepseek版.html
+		水平导航栏简易版.html = 水平导航栏简易版.html
+		水平导航栏练习.html = 水平导航栏练习.html
+		浮动布局.html = 浮动布局.html
+		浮动布局_deepseek版.html = 浮动布局_deepseek版.html
+		简历.html = 简历.html
+		粗略表格.html = 粗略表格.html
+		课程1点击变成粉色.html = 课程1点击变成粉色.html
+		课程2三种输出.html = 课程2三种输出.html
+		课程3简单信息录入.html = 课程3简单信息录入.html
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E76E3C5-0CE4-46AB-BFD2-E7CF6C67C7F8}
+	EndGlobalSection
+EndGlobal

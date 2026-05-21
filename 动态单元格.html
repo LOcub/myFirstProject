@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>动态添加行</title>
+</head>
+<body>
+    <table border="1" id="myTable">
+        <tr><th>name</th><th>age</th></tr>
+    </table>
+    <button id="addBtn">add a line</button>
+    <script>
+        let myTable = document.getElementById('myTable');
+        document.getElementById('addBtn').onclick = function () {
+            let row = myTable.insertRow();       // 使用 myTable，不是 table
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);       // 拼写正确 insertCell
+            cell1.innerText = "zhangSan";
+            cell2.innerText = "12";
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>罗德岛会议注册表 | 明日方舟主题</title>
+    <style>
+        /* ========== 全局重置 & 盒子模型 ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #eef2f5;
+            font-family: 'Segoe UI', 'Roboto', '微软雅黑', sans-serif;
+            line-height: 1.5;
+            padding: 40px 20px;
+            color: #1f2d3d;
+        }
+
+        /* 主容器 — 模拟罗德岛终端界面 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        .container:hover {
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* 头部 — 罗德岛风格 */
+        .rhodes-header {
+            background: linear-gradient(135deg, #1e3c4c 0%, #102b38 100%);
+            padding: 30px 35px 25px;
+            color: white;
+            border-bottom: 3px solid #ffb347;
+        }
+        .rhodes-header h1 {
+            font-size: 32px;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .rhodes-header h1::before {
+            content: "⚙️";
+            font-size: 36px;
+        }
+        .rhodes-header p {
+            margin-top: 8px;
+            opacity: 0.85;
+            font-style: italic;
+        }
+
+        /* 主体内容区域 (Flex / Grid 混合) */
+        .main-content {
+            padding: 30px 35px 20px;
+        }
+
+        /* ========== 注册表单 — 现代卡片风格 ========== */
+        .reg-form {
+            background: #fefefe;
+            border-radius: 24px;
+            margin-bottom: 35px;
+            border: 1px solid #e4edf2;
+        }
+
+        /* 表单分区标题 */
+        .section-title {
+            background: #eef3f7;
+            padding: 14px 25px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e5f6e;
+            border-left: 6px solid #ffb347;
+            margin-bottom: 20px;
+            border-radius: 40px 12px 12px 40px;
+        }
+
+        /* 表单行 — 利用 Flex 实现自适应 */
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .form-row .label {
+            width: 120px;
+            font-weight: 600;
+            color: #2c4b5e;
+            padding-top: 8px;
+        }
+        .form-row .field {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        /* 通用输入框样式 + 伪类 :focus 练习 */
+        input:not([type="radio"]):not([type="checkbox"]),
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #cbdbe2;
+            border-radius: 14px;
+            font-family: inherit;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            background: #fff;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #ff9f4a;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 159, 74, 0.2);
+        }
+
+        /* 单选框 / 复选框组 */
+        .options-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            align-items: center;
+            padding: 6px 0;
+        }
+        .options-group label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        /* 按钮组 & 伪类体验 */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0 20px;
+        }
+        .btn {
+            padding: 12px 32px;
+            border: none;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background: #2c6e9e;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .btn:hover {
+            background: #1f5a7e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+        }
+        .btn-reset {
+            background: #7f8c8d;
+        }
+        .btn-reset:hover {
+            background: #5d6e6f;
+        }
+
+        /* 表格展示参会人员预览 — 应用表格与伪类 nth-child 
+           同时兼容明日方舟干员风格 */
+        .preview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .preview-table th,
+        .preview-table td {
+            border: 1px solid #dce7ef;
+            padding: 12px 10px;
+            text-align: left;
+        }
+        .preview-table th {
+            background: #2e5a6b;
+            color: white;
+            font-weight: 600;
+        }
+        /* 斑马纹 + 伪类 :nth-child */
+        .preview-table tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        .preview-table tbody tr:hover {
+            background-color: #fff2e6;
+            transition: 0.1s;
+        }
+
+        /* 侧边栏内链接 & 锚点区域 (罗德岛行动指南) */
+        .guide-anchor {
+            background: #f1f6f9;
+            border-radius: 24px;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-left: 8px solid #ffb347;
+        }
+        .guide-anchor ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .guide-anchor li a {
+            text-decoration: none;
+            background: #ffffff;
+            padding: 6px 18px;
+            border-radius: 40px;
+            color: #1e5f6e;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid #cbdbe2;
+            display: inline-block;
+        }
+        /* 伪类 hover 和 active */
+        .guide-anchor li a:hover {
+            background: #ffb347;
+            color: white;
+            border-color: #ffb347;
+            transform: scale(0.98);
+        }
+        .guide-anchor li a:active {
+            background: #e0851e;
+        }
+
+        /* 底部 & 版权 / 仿罗德岛信息 */
+        .footer-info {
+            background: #102b38;
+            color: #bfd7e3;
+            padding: 20px 35px;
+            text-align: center;
+            font-size: 13px;
+            margin-top: 25px;
+        }
+        .footer-info a {
+            color: #ffb347;
+            text-decoration: none;
+        }
+        .footer-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 700px) {
+            .form-row .label {
+                width: 100%;
+            }
+            .rhodes-header h1 {
+                font-size: 26px;
+            }
+            .main-content {
+                padding: 20px;
+            }
+            .options-group {
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 头部区域 -->
+    <div class="rhodes-header">
+        <h1>📄 罗德岛会议注册表</h1>
+        <p>“博士，请填写您的参会信息 —— 明日方舟 · 泰拉交流峰会”</p>
+    </div>
+
+    <div class="main-content">
+        <!-- 表单部分：涵盖所有表单控件 + 伪类：focus, hover 等 -->
+        <form action="#" method="post" id="registerForm">
+            <div class="reg-form">
+                <div class="section-title">👤 干员 / 博士基本信息</div>
+                <div class="form-row">
+                    <div class="label">代号 / 姓名：</div>
+                    <div class="field"><input type="text" name="name" placeholder="例：博士 / 阿米娅" required></div>
+                </div>
+                <div class="form-row">
+                    <div class="label">所属机构：</div>
+                    <div class="field"><input type="text" name="org" value="罗德岛制药公司" placeholder="罗德岛/企鹅物流/乌萨斯"></div>
+                </div>
+                <div class="form-row">
+                    <div class="label">联络终端：</div>
+                    <div class="field"><input type="email" name="email" placeholder="doctor@rhodes.com"></div>
+                </div>
+                <div class="form-row">
+                    <div class="label">性别 (战术记录)：</div>
+                    <div class="field options-group">
+                        <label><input type="radio" name="gender" value="male"> 男博士</label>
+                        <label><input type="radio" name="gender" value="female"> 女博士</label>
+                        <label><input type="radio" name="gender" value="other"> 感染者/非感染者</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="label">出生年代：</div>
+                    <div class="field">
+                        <select name="birth">
+                            <option>泰拉纪年 1090</option>
+                            <option selected>1095</option>
+                            <option>1098</option>
+                            <option>1100</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reg-form">
+                <div class="section-title">🎟️ 会议参与选项</div>
+                <div class="form-row">
+                    <div class="label">注册类型：</div>
+                    <div class="field options-group">
+                        <label><input type="radio" name="regType" value="full" checked> 全体会议 + 晚宴 (💰 1280 龙门币)</label>
+                        <label><input type="radio" name="regType" value="standard"> 标准票 (680)</label>
+                        <label><input type="radio" name="regType" value="student"> 见习干员票 (280)</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="label">源石技艺讨论会：</div>
+                    <div class="field options-group">
+                        <label><input type="checkbox" name="topic1" value="art"> 源石技艺应用</label>
+                        <label><input type="checkbox" name="topic2" value="tactics"> 战术协同 / 危机合约</label>
+                        <label><input type="checkbox" name="topic3" value="inf"> 感染者权益共生</label>
+                        <label><input type="checkbox" name="topic4" value="media"> 移动城市融媒体</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="label">餐饮偏好：</div>
+                    <div class="field">
+                        <select name="meal">
+                            <option>常规餐 (理智恢复套餐)</option>
+                            <option>素食 (源石叶蔬菜)</option>
+                            <option selected>至纯源石风味料理</option>
+                            <option>罗德岛特供: 博士的健康便当</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="label">留言 / 战术建议：</div>
+                    <div class="field">
+                        <textarea name="message" rows="4" placeholder="写下你对罗德岛未来的期许，或最喜爱的干员语录……"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 按钮组 提交 / 重置 -->
+            <div class="action-buttons">
+                <button type="submit" class="btn">✨ 提交注册申请 ✨</button>
+                <button type="reset" class="btn btn-reset">🔄 重新填写</button>
+            </div>
+        </form>
+
+        <!-- 表格展示示例数据 + 应用 :nth-child  -->
+        <div class="section-title" style="margin-top: 20px;">📋 已报名干员（部分预览 — 罗德岛精英）</div>
+        <table class="preview-table">
+            <thead>
+                <tr><th>代号</th><th>所属</th><th>注册类型</th><th>源石技艺兴趣</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>阿米娅</td><td>罗德岛</td><td>全体会议+晚宴</td><td>源石技艺应用</td></tr>
+                <tr><td>博士</td><td>罗德岛指挥组</td><td>标准票</td><td>战术协同</td></tr>
+                <tr><td>银灰</td><td>谢拉格 · 喀兰贸易</td><td>全体会议</td><td>感染者权益共生</td></tr>
+                <tr><td>能天使</td><td>企鹅物流</td><td>标准票</td><td>移动城市融媒体</td></tr>
+                <tr><td>陈</td><td>龙门近卫局</td><td>见习干员票</td><td>战术协同</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 锚点 + 列表导航区域：罗德岛行动指南 (内部锚点跳转) -->
+        <div class="guide-anchor" id="guide">
+            <span style="font-weight: bold; font-size: 18px;">📡 罗德岛会议快速导览</span>
+            <ul>
+                <li><a href="#registerForm">⏫ 回到注册表单</a></li>
+                <li><a href="#schedule">📅 会议日程(锚点示例)</a></li>
+                <li><a href="#contacts">📞 联络凯尔希医生</a></li>
+                <li><a href="#">⚙️ 返回顶部</a></li>
+            </ul>
+        </div>
+
+        <!-- 锚点目标块 : 日程与联系 -->
+        <div id="schedule" style="padding-top: 20px; margin-top: -10px;">
+            <div class="section-title" style="margin-bottom: 10px;">📅 预计日程表 (锚点演示)</div>
+            <p style="background: #f9f6ef; border-radius: 20px; padding: 15px;">⚡ 第一天: 源石技艺研讨会 + 罗德岛走廊交流<br>
+            ⚡ 第二天: 危机合约战术分享 + 罗德岛新干员座谈会<br>
+            ⚡ 第三天: 感染者权益公益展 / 闭幕晚宴</p>
+        </div>
+        <div id="contacts" style="padding-top: 20px;">
+            <div class="section-title" style="margin-bottom: 8px;">📞 联络中枢</div>
+            <p>📧 邮件: rhodes_island@rhodes.com &nbsp;&nbsp; ☎ 终端: 844-RI-INFO<br>
+            🔗 官方地址: 罗德岛本舰 · 会议室甲板</p>
+        </div>
+    </div>
+
+    <div class="footer-info">
+        <p>© 罗德岛制药公司 · 本次会议最终解释权归凯尔希医生所有  |  “我们曾面临困境，但仍选择前行”</p>
+        <p>🔹 明日方舟同人设计 · 用于前端学习展示 🔹</p>
+    </div>
+</div>
+</body>
+</html>

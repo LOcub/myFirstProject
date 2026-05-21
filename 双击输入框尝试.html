@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>双击输入框尝试</title>
+</head>
+<body>
+    <ul>
+        <li>第一个</li>
+        <li>第二个</li>
+        <li>第三个</li>
+    </ul>
+    <script>
+        const listItems = document.querySelectorAll('li');
+        listItems.forEach(li => {
+            li.addEventListener('dblclick', function () {
+                const oldText = li.innerText;
+                const input = document.createElement('input');
+                input.value = oldText;
+                li.innerHTML = '';
+                li.appendChild(input);
+                input.focus();
+                function save() {
+                    const newText = input.value.trim();
+                    li.innerText = newText === '' ? oldText : newText;
+                }
+                input.addEventListener('blur', save);
+                input.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') {
+                        save();
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>

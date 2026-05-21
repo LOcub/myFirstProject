@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>伪类练习2</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            padding:20px;
+            font-family:'Segoe UI',sans-serif;
+            background:lightgray;
+        }
+        .header,.leader,.sidebar,.main,.footer{
+            padding:20px;
+            border-radius:8px;
+        }
+        .header{
+            font-weight:bold;
+            margin:0 auto;
+            padding:20px 8px;
+            background:#000000;
+            color:white;
+        }
+        .leader{
+            background:#4cff00;
+            color:#369eb3;
+            text-decoration:none;
+            text-align:center;
+            height:100px;
+            line-height:100px;
+            transition:all 5s ease;
+        }
+        .leader a:hover{
+            background:#000000;
+            color:white;
+        }
+        .sidebar{
+            float:left;
+            width:25%;
+            height:auto;
+            color:#4a87c1;
+        }
+        .main{
+            float:left;
+            width:75%;
+            height:auto;
+            color:#000000;
+            font-style:italic;
+        }
+        .footer{
+            font-size:12px;
+            text-align:right;
+            clear:both;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>所有著名网址在此</h1>
+    </div>
+    <div class="leader">
+        <a href="#first">首页</a>
+        <a href="#news">新闻</a>
+        <a href="#products">产品</a>
+        <a href="#about">关于</a>
+        <a href="#phone">联系方式</a>
+    </div>
+    <div class="sidebar">
+        <p id="first">首页</p>
+        <p id="news">新闻</p>
+        <p id="products">产品</p>
+        <p id="about">关于</p>
+        <p id="phone">联系方式</p>
+    </div>
+    <div class="main">
+        <p>我们的内容:首先关于到，对于，嗯对，好的于是就是所以。</p>
+        <p>新闻内容</p>
+        <p>产品内容</p>
+        <p>关于内容</p>
+        <p>联系方式内容</p>
+    </div>
+    <div class="footer">
+        <p>可以写点商标之类</p>
+    </div>
+</body>
+</html>

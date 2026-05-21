@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>js_practice4</title>
+</head>
+<body>
+    <p>这里是<strong>重点</strong><span id="money"></span></p>
+    <script>
+        let num1 = 1000;
+        let moneyElement = document.getElementById('money');
+        moneyElement.innerHTML = num1+"<em>我们是斜体书写的</em>";   // 正确：把数字赋给元素的 textContent
+    </script>
+</body>
+</html>

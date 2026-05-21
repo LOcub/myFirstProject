@@ -1,0 +1,538 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>个人仪表板 · 全能工具箱</title>
+    <!-- 引入外部库（轻量级） -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <style>
+        /* ---------- 全局变量 & 重置 ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background 0.2s ease, color 0.2s, border-color 0.2s;
+        }
+
+        :root {
+            --bg-body: #f4f7fc;
+            --card-bg: #ffffff;
+            --text-primary: #1e2a3a;
+            --text-secondary: #4a627a;
+            --border: #e2e8f0;
+            --accent: #2c7da0;
+            --accent-hover: #1f5a7a;
+            --danger: #e74c3c;
+            --success: #2ecc71;
+            --shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        body.dark {
+            --bg-body: #121826;
+            --card-bg: #1e293b;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+            --accent: #4aa3df;
+            --shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        body {
+            background: var(--bg-body);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Roboto, '微软雅黑', sans-serif;
+            padding: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* 头部 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--accent), #5f9ea0);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        /* 网格布局 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            padding: 1.2rem 1.5rem;
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+            .card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+            }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-left: 4px solid var(--accent);
+            padding-left: 0.8rem;
+        }
+
+        .todo-list, .habit-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .todo-item, .habit-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .todo-text, .habit-text {
+            flex: 1;
+        }
+
+            .todo-text.completed {
+                text-decoration: line-through;
+                color: var(--text-secondary);
+            }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        input, button {
+            font-family: inherit;
+        }
+
+        .add-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+            .add-form input {
+                flex: 1;
+                padding: 0.5rem 0.8rem;
+                border-radius: 30px;
+                border: 1px solid var(--border);
+                background: var(--bg-body);
+                color: var(--text-primary);
+            }
+
+        button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+            button:hover {
+                background: var(--accent-hover);
+            }
+
+        /* 可拖拽区域 */
+        .sortable-cards .card {
+            cursor: grab;
+        }
+
+            .sortable-cards .card:active {
+                cursor: grabbing;
+            }
+
+        /* 图表容器 */
+        canvas {
+            max-height: 200px;
+            width: 100%;
+        }
+
+        /* 快捷天气 */
+        .weather {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: space-between;
+        }
+
+        .weather-temp {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* 响应式 */
+        @media (max-width: 760px) {
+            body {
+                padding: 1rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1><i class="fas fa-chalkboard-user"></i> 个人全能仪表板</h1>
+            <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i> 深色模式</button>
+        </div>
+
+        <!-- 可拖拽排序区域（SortableJS） -->
+        <div class="grid sortable-cards" id="dashboardGrid">
+            <!-- 卡片1：待办事项 -->
+            <div class="card" data-id="todo">
+                <div class="card-header">
+                    <span><i class="fas fa-check-circle"></i> 待办清单</span>
+                    <span style="font-size:0.8rem;">📌 可拖拽排序</span>
+                </div>
+                <ul class="todo-list" id="todoList"></ul>
+                <div class="add-form">
+                    <input type="text" id="newTodoText" placeholder="新任务...">
+                    <button id="addTodoBtn">添加</button>
+                </div>
+            </div>
+
+            <!-- 卡片2：习惯追踪 -->
+            <div class="card" data-id="habits">
+                <div class="card-header">
+                    <span><i class="fas fa-heartbeat"></i> 习惯打卡</span>
+                </div>
+                <ul class="habit-list" id="habitList"></ul>
+                <div class="add-form">
+                    <input type="text" id="newHabitText" placeholder="新习惯（如：阅读30分钟）">
+                    <button id="addHabitBtn">添加</button>
+                </div>
+            </div>
+
+            <!-- 卡片3：数据图表（周活跃度） -->
+            <div class="card" data-id="chart">
+                <div class="card-header">
+                    <span><i class="fas fa-chart-line"></i> 本周活跃度</span>
+                </div>
+                <canvas id="activityChart" width="400" height="180"></canvas>
+            </div>
+
+            <!-- 卡片4：天气与提示 -->
+            <div class="card" data-id="weather">
+                <div class="card-header">
+                    <span><i class="fas fa-cloud-sun"></i> 实时天气（模拟）</span>
+                </div>
+                <div class="weather">
+                    <div>
+                        <div class="weather-temp" id="temp">22°C</div>
+                        <div id="weatherDesc">多云转晴</div>
+                    </div>
+                    <i class="fas fa-sun" style="font-size: 3rem; color: #f39c12;"></i>
+                </div>
+                <p style="margin-top: 12px; font-size: 0.85rem;" id="greeting">✨ 保持专注，今天也要加油！</p>
+            </div>
+
+            <!-- 卡片5：快速备忘录 -->
+            <div class="card" data-id="notes">
+                <div class="card-header">
+                    <span><i class="fas fa-sticky-note"></i> 便签板</span>
+                </div>
+                <textarea id="memoArea" rows="4" style="width:100%; background:var(--bg-body); border:1px solid var(--border); border-radius:16px; padding:0.6rem; color:var(--text-primary); resize:vertical;"></textarea>
+                <button id="saveMemoBtn" style="margin-top: 8px;">保存便签</button>
+                <div style="font-size:0.75rem; margin-top:6px;">💾 自动保存至本地存储</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ---------- 1. 全局数据 & 本地存储 ----------
+        let todos = [];
+        let habits = [];
+
+        // DOM 元素
+        const todoListEl = document.getElementById('todoList');
+        const habitListEl = document.getElementById('habitList');
+        const newTodoInput = document.getElementById('newTodoText');
+        const addTodoBtn = document.getElementById('addTodoBtn');
+        const newHabitInput = document.getElementById('newHabitText');
+        const addHabitBtn = document.getElementById('addHabitBtn');
+        const memoTextarea = document.getElementById('memoArea');
+        const saveMemoBtn = document.getElementById('saveMemoBtn');
+
+        // 加载本地数据
+        function loadData() {
+            const storedTodos = localStorage.getItem('dashboard_todos');
+            if (storedTodos) todos = JSON.parse(storedTodos);
+            else todos = [
+                { id: Date.now() + 1, text: '学习 JavaScript 闭包', completed: false },
+                { id: Date.now() + 2, text: '完成仪表板项目', completed: false },
+                { id: Date.now() + 3, text: '锻炼30分钟', completed: true }
+            ];
+            const storedHabits = localStorage.getItem('dashboard_habits');
+            if (storedHabits) habits = JSON.parse(storedHabits);
+            else habits = [
+                { id: Date.now() + 4, name: '早睡', streak: 3 },
+                { id: Date.now() + 5, name: '喝水2L', streak: 5 }
+            ];
+            const memo = localStorage.getItem('dashboard_memo');
+            if (memo) memoTextarea.value = memo;
+            else memoTextarea.value = '写点灵感...';
+        }
+
+        function saveTodos() {
+            localStorage.setItem('dashboard_todos', JSON.stringify(todos));
+        }
+        function saveHabits() {
+            localStorage.setItem('dashboard_habits', JSON.stringify(habits));
+        }
+        function saveMemo() {
+            localStorage.setItem('dashboard_memo', memoTextarea.value);
+        }
+
+        // 渲染待办
+        function renderTodos() {
+            todoListEl.innerHTML = '';
+            todos.forEach(todo => {
+                const li = document.createElement('li');
+                li.className = 'todo-item';
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = todo.completed;
+                checkbox.addEventListener('change', () => {
+                    todo.completed = checkbox.checked;
+                    saveTodos();
+                    renderTodos();
+                    updateChartData();  // 图表依赖任务完成度
+                });
+                const span = document.createElement('span');
+                span.className = 'todo-text' + (todo.completed ? ' completed' : '');
+                span.innerText = todo.text;
+                const delBtn = document.createElement('button');
+                delBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+                delBtn.className = 'delete-btn';
+                delBtn.onclick = () => {
+                    todos = todos.filter(t => t.id !== todo.id);
+                    saveTodos();
+                    renderTodos();
+                    updateChartData();
+                };
+                li.appendChild(checkbox);
+                li.appendChild(span);
+                li.appendChild(delBtn);
+                todoListEl.appendChild(li);
+            });
+        }
+
+        // 渲染习惯
+        function renderHabits() {
+            habitListEl.innerHTML = '';
+            habits.forEach(habit => {
+                const li = document.createElement('li');
+                li.className = 'habit-item';
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'habit-text';
+                nameSpan.innerText = `${habit.name}  🔥 连续 ${habit.streak} 天`;
+                const checkBtn = document.createElement('button');
+                checkBtn.innerHTML = '<i class="fas fa-calendar-check"></i>';
+                checkBtn.style.background = '#2ecc71';
+                checkBtn.style.marginRight = '6px';
+                checkBtn.onclick = () => {
+                    habit.streak += 1;
+                    saveHabits();
+                    renderHabits();
+                };
+                const delBtn = document.createElement('button');
+                delBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+                delBtn.className = 'delete-btn';
+                delBtn.onclick = () => {
+                    habits = habits.filter(h => h.id !== habit.id);
+                    saveHabits();
+                    renderHabits();
+                };
+                li.appendChild(nameSpan);
+                li.appendChild(checkBtn);
+                li.appendChild(delBtn);
+                habitListEl.appendChild(li);
+            });
+        }
+
+        // 添加待办
+        function addTodo() {
+            const text = newTodoInput.value.trim();
+            if (text === '') return;
+            todos.push({ id: Date.now(), text: text, completed: false });
+            saveTodos();
+            renderTodos();
+            newTodoInput.value = '';
+            updateChartData();
+        }
+        // 添加习惯
+        function addHabit() {
+            const name = newHabitInput.value.trim();
+            if (name === '') return;
+            habits.push({ id: Date.now(), name: name, streak: 0 });
+            saveHabits();
+            renderHabits();
+            newHabitInput.value = '';
+        }
+
+        // ---------- 2. Chart.js 图表（任务完成度统计）----------
+        let chart;
+        function updateChartData() {
+            const total = todos.length;
+            const completed = todos.filter(t => t.completed).length;
+            const pending = total - completed;
+            if (chart) {
+                chart.data.datasets[0].data = [completed, pending];
+                chart.update();
+            } else {
+                initChart();
+            }
+        }
+        function initChart() {
+            const ctx = document.getElementById('activityChart').getContext('2d');
+            const completed = todos.filter(t => t.completed).length;
+            const pending = todos.length - completed;
+            chart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['已完成', '未完成'],
+                    datasets: [{
+                        data: [completed, pending],
+                        backgroundColor: ['#2ecc71', '#e74c3c'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+        }
+
+        // ---------- 3. 模拟天气 & 问候 ----------
+        function updateWeather() {
+            const cities = ['北京', '上海', '深圳', '成都'];
+            const randomCity = cities[Math.floor(Math.random() * cities.length)];
+            // 模拟不同温度
+            const temp = (Math.random() * 20 + 10).toFixed(1);
+            const desc = ['晴', '多云', '小雨', '阴'][Math.floor(Math.random() * 4)];
+            document.getElementById('temp').innerHTML = `${temp}°C`;
+            document.getElementById('weatherDesc').innerHTML = `${randomCity} · ${desc}`;
+            const hour = new Date().getHours();
+            let greeting = '';
+            if (hour < 12) greeting = '☀️ 早安！高效的一天开始了';
+            else if (hour < 18) greeting = '🌤️ 下午好，保持节奏';
+            else greeting = '🌙 晚上好，复盘今日成果';
+            document.getElementById('greeting').innerHTML = `${greeting} ✨`;
+        }
+        setInterval(updateWeather, 60000);
+
+        // ---------- 4. 主题切换 ----------
+        function initTheme() {
+            const isDark = localStorage.getItem('theme') === 'dark';
+            if (isDark) document.body.classList.add('dark');
+            else document.body.classList.remove('dark');
+            document.getElementById('themeToggle').onclick = () => {
+                document.body.classList.toggle('dark');
+                localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            };
+        }
+
+        // ---------- 5. 卡片拖拽排序（SortableJS）----------
+        let sortable;
+        function enableDrag() {
+            const container = document.getElementById('dashboardGrid');
+            if (sortable) sortable.destroy();
+            sortable = new Sortable(container, {
+                animation: 200,
+                handle: '.card',
+                ghostClass: 'sortable-ghost',
+                onEnd: function () {
+                    // 保存卡片顺序到localStorage
+                    const cardIds = Array.from(container.children).map(card => card.getAttribute('data-id'));
+                    localStorage.setItem('dashboard_layout', JSON.stringify(cardIds));
+                }
+            });
+            // 恢复保存的顺序（可选）
+            const savedLayout = localStorage.getItem('dashboard_layout');
+            if (savedLayout) {
+                const order = JSON.parse(savedLayout);
+                const cards = Array.from(container.children);
+                for (let i = 0; i < order.length; i++) {
+                    const targetCard = cards.find(card => card.getAttribute('data-id') === order[i]);
+                    if (targetCard) container.appendChild(targetCard);
+                }
+            }
+        }
+
+        // ---------- 6. 启动应用 ----------
+        function init() {
+            loadData();
+            renderTodos();
+            renderHabits();
+            initChart();
+            updateWeather();
+            initTheme();
+            enableDrag();
+            // 事件绑定
+            addTodoBtn.addEventListener('click', addTodo);
+            addHabitBtn.addEventListener('click', addHabit);
+            saveMemoBtn.addEventListener('click', () => {
+                saveMemo();
+                alert('便签已保存');
+            });
+            window.addEventListener('beforeunload', () => {
+                saveMemo();
+            });
+            // 输入框支持回车
+            newTodoInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') addTodo(); });
+            newHabitInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') addHabit(); });
+        }
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .track {
+            width: 300px;
+            background: #ddd;
+            border-radius: 20px;
+        }
+
+        .progress {
+            width: 0%;
+            height: 20px;
+            background: #28adb5;
+            border-radius: 20px;
+            animation: load 2s ease-out forwards;
+        }
+
+        @keyframes load {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="track">
+        <div class="progress"></div>
+    </div>
+</body>
+</html>

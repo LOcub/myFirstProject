@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>极简账单</title>
+</head>
+<body>
+    <input id="desc" placeholder="项目" />
+    <input id="amount" placeholder="金额" />
+    <select id="type">
+        <option>收入</option>
+        <option>支出</option>
+    </select>
+    <button id="addBtn">添加</button>
+    <table border="1">
+        <thead>
+            <tr><th>项目</th><th>金额</th><th>类型</th></tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+    <div id="balance">结余：0</div>
+
+    <script>
+        let records = [];
+        const tbody = document.getElementById('tbody');
+        const balanceDiv = document.getElementById('balance');
+
+        function updateDisplay() {
+            tbody.innerHTML = '';
+            let total = 0;
+            for (let i = 0; i < records.length; i++) {
+                let r = records[i];
+                let num = parseFloat(r.amount);
+                if (r.type === '收入') total += num;
+                else total -= num;
+                let row = tbody.insertRow();   // 修正拼写
+                row.insertCell(0).innerText = r.desc;
+                row.insertCell(1).innerText = num;
+                row.insertCell(2).innerText = r.type;
+            }
+            balanceDiv.innerText = '结余：' + total;
+        }
+
+        document.getElementById('addBtn').onclick = function () {   // 修正拼写
+            let desc = document.getElementById('desc').value.trim();
+            let amount = document.getElementById('amount').value.trim();
+            let type = document.getElementById('type').value;
+            if (desc === '' || amount === '') return;
+            records.push({ desc, amount, type });
+            updateDisplay();
+            document.getElementById('desc').value = '';   // 修正 id
+            document.getElementById('amount').value = '';
+        };
+    </script>
+</body>
+</html>

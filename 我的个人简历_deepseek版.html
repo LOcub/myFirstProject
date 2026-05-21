@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>周东晓 · 前端实习生简历</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #eef2f5;
+            font-family: 'Segoe UI', Roboto, '微软雅黑', sans-serif;
+            line-height: 1.5;
+            padding: 40px 20px;
+            color: #1e2a3e;
+        }
+
+        /* 简历卡片 */
+        .resume {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        /* 头部区域（深色） */
+        .header {
+            background: #0a2b3e;
+            color: white;
+            padding: 40px 30px 30px;
+        }
+
+        .name {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 18px;
+            color: #bfd9e8;
+            border-left: 3px solid #4aa3df;
+            padding-left: 12px;
+            margin-bottom: 20px;
+        }
+
+        .contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+            .contact span {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                background: rgba(255,255,255,0.12);
+                padding: 5px 12px;
+                border-radius: 30px;
+            }
+
+        /* 主体内容 */
+        .content {
+            padding: 30px 35px;
+        }
+
+        /* 两栏布局（左侧主要信息 + 右侧技能/证书）用 grid */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+        }
+
+        /* 左侧区块样式 */
+        .section {
+            margin-bottom: 28px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0a2b3e;
+            border-bottom: 3px solid #4aa3df;
+            padding-bottom: 6px;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .item {
+            margin-bottom: 18px;
+        }
+
+        .item-header {
+            font-weight: 700;
+            font-size: 17px;
+            color: #1e4663;
+        }
+
+        .item-sub {
+            font-size: 14px;
+            color: #5a6e7c;
+            margin-bottom: 6px;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            margin-top: 6px;
+            line-height: 1.45;
+            color: #2c3e4e;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .tech-tag {
+            background: #e9f0f5;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #1a5a8c;
+        }
+
+        /* 右侧面板 */
+        .right-panel {
+            background: #f9fbfd;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .skill-category {
+            margin-bottom: 25px;
+        }
+
+            .skill-category h3 {
+                font-size: 18px;
+                margin-bottom: 12px;
+                border-left: 3px solid #4aa3df;
+                padding-left: 10px;
+                color: #1e3a5f;
+            }
+
+        .skill-bars {
+            list-style: none;
+        }
+
+            .skill-bars li {
+                margin-bottom: 12px;
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+        .skill-level {
+            display: block;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+            .skill-level span {
+                display: block;
+                height: 100%;
+                background: #4aa3df;
+                border-radius: 4px;
+                width: 0%;
+            }
+
+        /* 证书/语言区块 */
+        .cert-item {
+            font-size: 14px;
+            margin: 10px 0;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .cert-name {
+            font-weight: 600;
+            width: 80px;
+        }
+
+        /* 社交/链接按钮 */
+        .github-link {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #0a2b3e;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+            .btn:hover {
+                background: #2b5a7a;
+                transform: translateY(-2px);
+            }
+
+        /* 响应式 */
+        @media (max-width: 750px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .name {
+                font-size: 32px;
+            }
+        }
+
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #e0e9ef;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <div class="header">
+            <div class="name">周东晓</div>
+            <div class="title">前端开发实习生 · 2026届本科</div>
+            <div class="contact">
+                <span>📧 dongxiao.zhou@edu.cn</span>
+                <span>📞 188-8888-XXXX</span>
+                <span>🌐 GitHub: @zhoudx-dev</span>
+                <span>🎓 哈尔滨理工大学 · 计算机科学与技术</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="two-columns">
+                <!-- 左侧：教育 + 项目 + 自我评价 -->
+                <div>
+                    <!-- 教育 -->
+                    <div class="section">
+                        <div class="section-title">教育背景</div>
+                        <div class="item">
+                            <div class="item-header">哈尔滨理工大学  · 计算机科学与技术</div>
+                            <div class="item-sub">本科 | 2022 – 2027 (预计)</div>
+                            <div class="project-desc">主修课程：数据结构与算法、数据库、Web前端开发、Python程序设计、设计模式、操作系统。</div>
+                        </div>
+                    </div>
+
+                    <!-- 项目经验：我帮你设计的一个可落地项目 -->
+                    <div class="section">
+                        <div class="section-title">项目经验</div>
+                        <div class="item">
+                            <div class="item-header">罗德岛会议注册表（响应式网页）</div>
+                            <div class="item-sub">独立开发 | 2025.04 – 至今</div>
+                            <div class="project-desc">
+                                基于 HTML5 / CSS3 构建的会议注册演示页面，包含参会者信息表单（文本、单选/复选、下拉列表、文本域），
+                                并利用 Flex、Grid 完成布局美化。通过伪类（:hover/:focus）提升交互反馈，实现移动端适配。
+                                项目代码已托管至 GitHub，用于学习前端基础与表单组件设计。
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3 (Flex/Grid)</span>
+                                <span class="tech-tag">伪类选择器</span>
+                                <span class="tech-tag">响应式布局</span>
+                            </div>
+                        </div>
+                        <!-- 可以留一个占位，日后补充第二个项目 -->
+                        <div class="item">
+                            <div class="item-header">个人博客 / 作品集 (进行中)</div>
+                            <div class="item-sub">独立开发 | 2025.05 – 至今</div>
+                            <div class="project-desc">
+                                使用 HTML + CSS 搭建个人博客页面，计划加入 JavaScript 实现暗色主题切换和局部动态效果，
+                                用于系统化练习 CSS 动画和 DOM 操作。
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript (学习)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 自我评价 -->
+                    <div class="section">
+                        <div class="section-title">自我评价</div>
+                        <div class="project-desc" style="margin-top: 0;">
+                            🔹 热爱前端技术，每天坚持编码学习，善于通过查阅 MDN 文档解决问题。<br>
+                            🔹 具备良好的逻辑思维和团队协作意识，乐于分享与总结，目前正在系统化巩固 CSS 和 JavaScript。<br>
+                            🔹 目标：成为有工程素养的前端开发工程师。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧：技能 + 证书 + 语言 -->
+                <div class="right-panel">
+                    <div class="skill-category">
+                        <h3>🧰 技术栈（按掌握程度排序）</h3>
+                        <ul class="skill-bars">
+                            <li>
+                                HTML5 & 语义化标签
+                                <div class="skill-level"><span style="width: 80%;"></span></div>
+                            </li>
+                            <li>
+                                CSS3 (选择器/盒模型/Flex/Grid/伪类)
+                                <div class="skill-level"><span style="width: 70%;"></span></div>
+                            </li>
+                            <li>
+                                JavaScript (ES6基础)
+                                <div class="skill-level"><span style="width: 45%;"></span></div>
+                            </li>
+                            <li>
+                                Git / GitHub 基础
+                                <div class="skill-level"><span style="width: 55%;"></span></div>
+                            </li>
+                            <li>
+                                Python / 算法基础
+                                <div class="skill-level"><span style="width: 50%;"></span></div>
+                            </li>
+                            <li>
+                                Vue / React (学习路线中)
+                                <div class="skill-level"><span style="width: 20%;"></span></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>📜 证书 & 语言</h3>
+                        <div class="cert-item"><span class="cert-name">英语四级</span> (CET-4) 已通过</div>
+                        <div class="cert-item"><span class="cert-name">英语六级</span> 备考中</div>
+                        <div class="cert-item"><span class="cert-name">其他</span> 校程序设计大赛参与奖</div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>💡 学习资源 & 日常</h3>
+                        <div class="project-desc" style="font-size:13px">
+                            • MDN Web Docs & W3Schools<br>
+                            • 菜鸟教程 & 视频课程（B站/慕课）<br>
+                            • 每日 LeetCode 热身 & 前端小练习
+                        </div>
+                    </div>
+
+                    <div class="github-link">
+                        <a href="#" class="btn" target="_blank">🔗 我的 GitHub 占位链接</a>
+                        <p style="font-size: 11px; margin-top: 10px;">简历持续更新中……</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div style="text-align: center; font-size: 12px; color: #6c8a9e;">
+                © 2025 周东晓 · 前端实习生简历 | 设计使用 Flex/Grid 响应式
+            </div>
+        </div>
+    </div>
+</body>
+</html>

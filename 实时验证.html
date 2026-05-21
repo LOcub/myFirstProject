@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>实时验证</title>
+</head>
+<body>
+    <input id="task" placeholder="项目" />
+    <span id="taskError" style="color:red;font-size:12px;"></span>
+    <script>
+        const task = document.getElementById('task');
+        const taskError = document.getElementById('taskError');
+        task.addEventListener('input', function () {
+            let val = task.value.trim();
+            if (val === '') {
+                taskError.innerText = '项目名不可为空';
+            }
+            else {
+                taskError.innerText = '';
+            }
+        })
+    </script>
+</body>
+</html>

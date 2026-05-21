@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .track {
+            width: 300px;
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 20px;
+            background: green;
+            border-radius: 10px;
+            transition: width 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="track">
+        <div class="progress-bar" id="progress"></div>
+    </div>
+    <button id="start">开始加载</button>
+
+    <script>
+        document.getElementById('start').onclick = () => {
+            let width = 0;
+            let timer = setInterval(() => {
+                width += 10;
+                document.getElementById('progress').style.width = width + '%';
+                if (width >= 100) clearInterval(timer);
+            }, 100);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>个人账本计算系统</title>
+    <style>
+        body {
+            font-family: '微软雅黑', sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c7da0;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;    
+        }
+
+            .input-group input, .input-group select, .input-group button {
+                padding: 8px 12px;
+                border-radius: 24px;
+                border: 1px solid #ccc;
+                font-size: 14px;
+            }
+
+        button {
+            background: #2c7da0;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+            button:hover {
+                background: #1f5a7a;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background: #e9f4f8;
+        }
+
+        .total {
+            text-align: right;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 1.2em;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+
+            .delete-btn:hover {
+                background: #c0392b;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📒 个人账本</h2>
+
+        <!-- 输入区域 -->
+        <div class="input-group">
+            <input type="text" id="desc" placeholder="项目（如买菜、工资）" style="flex:2;">
+            <input type="number" id="amount" placeholder="金额" step="0.01" style="flex:1;">
+            <select id="type" style="flex:1;">  
+                <option value="支出">💸 支出</option>
+                <option value="收入">💰 收入</option>
+            </select>
+            <button id="addBtn">➕ 添加记录</button>
+        </div>
+
+        <!-- 账本表格 -->
+        <table id="ledgerTable">
+            <thead>
+                <tr><th>描述</th><th>金额</th><th>类型</th><th>操作</th></tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- 动态添加行 -->
+            </tbody>
+        </table>
+        <div class="total" id="balance">结余：0.00 元</div>
+    </div>
+
+    <script>
+    // 存储所有账本记录的数组
+    let records = [];
+
+    // 获取页面元素
+    const descInput = document.getElementById('desc');
+    const amountInput = document.getElementById('amount');
+    const typeSelect = document.getElementById('type');
+    const addBtn = document.getElementById('addBtn');
+    const tableBody = document.getElementById('tableBody');
+    const balanceSpan = document.getElementById('balance');
+
+    // 更新表格显示（根据 records 数组重新渲染）
+    function updateTable() {
+        // 清空表格体
+        tableBody.innerHTML = '';
+        let total = 0;
+
+        // 遍历记录，创建行
+        for (let i = 0; i < records.length; i++) {
+            let record = records[i];
+            let amountNum = parseFloat(record.amount);
+            // 计算结余：收入加，支出减
+            if (record.type === '收入') {
+                total += amountNum;
+            } else {
+                total -= amountNum;
+            }
+
+            // 创建行
+            let row = tableBody.insertRow();
+            row.insertCell(0).innerText = record.desc;
+            row.insertCell(1).innerText = amountNum.toFixed(2);
+            row.insertCell(2).innerText = record.type;
+            let delCell = row.insertCell(3);
+            let delBtn = document.createElement('button');
+            delBtn.innerText = '删除';
+            delBtn.className = 'delete-btn';   // 添加 class 以便样式
+            delBtn.onclick = (function(index) {
+                return function() { deleteRecord(index); };
+            })(i);
+            delCell.appendChild(delBtn);
+        }
+
+        // 更新结余显示
+        balanceSpan.innerText = '结余：' + total.toFixed(2) + ' 元';
+    }
+
+    // 删除记录
+    function deleteRecord(index) {
+        records.splice(index, 1);   // 从数组中移除
+        updateTable();              // 重新渲染表格
+    }
+
+    // 添加记录
+    function addRecord() {
+        let desc = descInput.value.trim();
+        let amount = amountInput.value.trim();
+        let type = typeSelect.value;
+
+        // 验证：描述不能为空，金额必须是有效数字
+        if (desc === '') {
+            alert('请填写项目描述');
+            return;
+        }
+        let amountNum = parseFloat(amount);
+        if (isNaN(amountNum) || amountNum <= 0) {
+            alert('请输入大于0的有效金额');
+            return;
+        }
+
+        // 将新记录添加到数组
+        records.push({
+            desc: desc,
+            amount: amountNum,
+            type: type
+        });
+
+        // 清空输入框（保留类型选择）
+        descInput.value = '';
+        amountInput.value = '';
+
+        // 更新表格
+        updateTable();
+    }
+
+    // 绑定添加按钮事件
+    addBtn.onclick = addRecord;
+
+    // 初始化时显示空表格（可选：加一条示例记录帮助理解）
+    // 为了让页面不空，加一条示例记录（可删除）
+    records.push({ desc: '示例-工资', amount: 5000, type: '收入' });
+    records.push({ desc: '示例-买菜', amount: 68.5, type: '支出' });
+    updateTable();
+    </script>
+</body>
+</html>

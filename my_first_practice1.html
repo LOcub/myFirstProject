@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>My_first_practice1</title>
+    <style>
+        .title{
+            font-family:"楷体","微软雅黑";
+            box-shadow:1px 4px 12px rgb(0, 255, 255,0.5);
+            margin:10px 30% 10px 30%;
+            border:1px solid black;
+        }
+        .title_1{
+            background:#c0bdbd;
+            color:black;
+            text-align:center;
+        }
+        caption,th{
+            text-align:center;
+            gap:20px;
+        }
+    </style>
+</head>
+<body>
+    <form name="in">
+        <div class="title">
+            <div class="title_1">
+                <table>
+                    <caption>本日账单</caption>
+                    <tr>
+                        <th>
+                            <input type="text" placeholder="项目：（例如买菜等）"  id="name"/>
+                        </th>
+                        <th>
+                            <input type="number" placeholder="金额"  id="price"/>
+                        </th>
+                        <th>
+                            <select name="selection">
+                                <option>收入</option>
+                                <option>支出</option>
+                            </select>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <script>
+                    let namne = document.getElementById('name').value;
+                    let price = document.getElementById('price').value;
+                </script>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

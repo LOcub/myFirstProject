@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>分离式动态表格</title>
+</head>
+<body>
+    <!-- 独立的输入区（不在表格内） -->
+    <div>
+        <input id="name" placeholder="姓名">
+        <input id="age" placeholder="年龄">
+        <button id="addBtn">添加</button>
+    </div>
+
+    <!-- 独立的表格（只用于展示数据） -->
+    <table border="1" id="dataTable">
+        <thead>
+            <tr><th>姓名</th><th>年龄</th>
+        </thead>
+        </thead>
+        <tbody id="tableBody">
+            <!-- 动态添加的行会放在这里 -->
+        </tbody>
+    </table>
+
+    <script>
+        // 获取表格的 tbody 元素
+        let tbody = document.getElementById('tableBody');
+
+        document.getElementById('addBtn').onclick = function () {
+            let name = document.getElementById('name').value;
+            let age = document.getElementById('age').value;
+            if (name === '' || age === '') return;
+
+            // 在 tbody 中添加新行
+            let row = tbody.insertRow();
+            row.insertCell(0).innerText = name;
+            row.insertCell(1).innerText = age;
+
+            // 清空输入框
+            document.getElementById('name').value = '';
+            document.getElementById('age').value = '';
+        };
+    </script>
+</body>
+</html>

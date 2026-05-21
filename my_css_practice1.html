@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>My_css_practice1</title>
+    <style>
+        /* 直接定义选择器，不要嵌套在 p 里面 */
+        th {
+            min-width: 100px;
+            min-height: 200px;
+            color: #0f0d0d;
+            background: #2dc0c0;
+        }
+
+        caption {
+            color: #ffffff;
+            background: #000000;
+            font-weight: bold;
+            font-style: italic;
+            font-family: "宋体", "微软雅黑", sans-serif;
+            text-decoration: underline; /* 修正拼写 */
+        }
+
+        .radio_1 {
+            color: #00ff21;
+            background: #ff0000;
+            text-shadow: 3px 5px 10px #2dc0c0;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" method="post">
+        <table>
+            <caption>My_css_practice1</caption>
+            <tr>
+                <th>内联样式</th>
+                <th>内部样式</th>
+                <th>引入外部样式</th>
+                <th>导入外部样式</th>
+            </tr>
+            <tr>
+                <td><a href="#">回到顶部</a></td>
+                <td><input type="text" class="name" /></td>
+                <td colspan="2">
+                    <input type="radio" class="radio_1" /> 男
+                    <input type="radio" class="radio_1" /> 女
+                    <input type="radio" class="radio_1" /> 沃尔玛塑料袋
+                    <input type="radio" class="radio_1" /> 人妖
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

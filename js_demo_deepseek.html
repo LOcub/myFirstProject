@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>textContent vs innerHTML</title>
+</head>
+<body>
+    <div id="demo"></div>
+
+    <script>
+        let demo = document.getElementById('demo');
+
+        // 1. 使用 textContent
+        demo.textContent = "<strong>粗体文字</strong> 和 <em>斜体</em>";
+        // 页面显示：<strong>粗体文字</strong> 和 <em>斜体</em>（标签原样显示，不会加粗或斜体）
+
+        // 2. 使用 innerHTML（注释掉上面，运行下面这行看效果）
+        // demo.innerHTML = "<strong>粗体文字</strong> 和 <em>斜体</em>";
+        // 页面显示：粗体文字 和 斜体（真正加粗和斜体效果）
+    </script>
+</body>
+</html>
