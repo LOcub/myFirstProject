@@ -1,0 +1,190 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\BookManager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookManager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\BookManageForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\BookManageForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\MainForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\MainForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\BorrowRecordsForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\BorrowRecordsForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\LoginForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\LoginForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\OverdueForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\OverdueForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\RegisterForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\RegisterForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\UserManageForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\UserManageForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Models\\BorrowRecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Models\\BorrowRecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BorrowRecordsForm.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\BorrowRecordsForm.cs",
+              "RelativeDocumentMoniker": "Forms\\BorrowRecordsForm.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\BorrowRecordsForm.cs",
+              "RelativeToolTip": "Forms\\BorrowRecordsForm.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-29T09:04:38.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LoginForm.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\LoginForm.cs",
+              "RelativeDocumentMoniker": "Forms\\LoginForm.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\LoginForm.cs",
+              "RelativeToolTip": "Forms\\LoginForm.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAADIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-29T09:04:34.513Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\MainForm.cs",
+              "RelativeDocumentMoniker": "Forms\\MainForm.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\MainForm.cs",
+              "RelativeToolTip": "Forms\\MainForm.cs",
+              "ViewState": "AgIAADABAAAAAAAAAAAAAA8AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-29T09:04:33.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OverdueForm.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\OverdueForm.cs",
+              "RelativeDocumentMoniker": "Forms\\OverdueForm.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\OverdueForm.cs",
+              "RelativeToolTip": "Forms\\OverdueForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-29T09:04:33.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RegisterForm.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\RegisterForm.cs",
+              "RelativeDocumentMoniker": "Forms\\RegisterForm.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\RegisterForm.cs",
+              "RelativeToolTip": "Forms\\RegisterForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-29T09:04:32.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BookManageForm.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\BookManageForm.cs",
+              "RelativeDocumentMoniker": "Forms\\BookManageForm.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\BookManageForm.cs",
+              "RelativeToolTip": "Forms\\BookManageForm.cs",
+              "ViewState": "AgIAALcAAAAAAAAAAAAAAEMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-29T08:47:37.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookManager.csproj",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\BookManager.csproj",
+              "RelativeDocumentMoniker": "BookManager.csproj",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\BookManager.csproj",
+              "RelativeToolTip": "BookManager.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-28T13:06:10.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserManageForm.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\UserManageForm.cs",
+              "RelativeDocumentMoniker": "Forms\\UserManageForm.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Forms\\UserManageForm.cs",
+              "RelativeToolTip": "Forms\\UserManageForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-29T09:04:29.949Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BorrowRecord.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Models\\BorrowRecord.cs",
+              "RelativeDocumentMoniker": "Models\\BorrowRecord.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Models\\BorrowRecord.cs",
+              "RelativeToolTip": "Models\\BorrowRecord.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-29T09:04:21.343Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\\u56FE\u4E66\u7BA1\u7406\u7CFB\u7EDF\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-29T06:34:12.551Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
